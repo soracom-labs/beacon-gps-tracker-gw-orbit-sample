@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`soralet test suite WASM result should be expected 1`] = `
+Object {
+  "bat": 3,
+  "imei": "012345678901234",
+  "lat": 35.66978981111111,
+  "loc_data": "02162500",
+  "lon": 139.74416788888888,
+  "major_axis": 10,
+  "minor_axis": 4,
+  "timestamp": "010511162404",
+  "type": 1,
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 2`] = `
+Object {
+  "bat": 3,
+  "imei": "012345678901234",
+  "lat": -35.66978981111111,
+  "loc_data": "02162500",
+  "lon": -139.74416788888888,
+  "major_axis": 10,
+  "minor_axis": 4,
+  "timestamp": "010511162404",
+  "type": 1,
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 3`] = `
+Object {
+  "bat": 3,
+  "imei": "012345678901234",
+  "timestamp": "010601521507",
+  "type": 2,
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 4`] = `
+Object {
+  "bat": 3,
+  "timestamp": "010601521507",
+  "type": 2,
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 5`] = `
+Object {
+  "attr": 1,
+  "bat": 3,
+  "imei": "012345678901234",
+  "major": "0000",
+  "minor": "0000",
+  "rssi": 78,
+  "rssi_b": "4E",
+  "timestamp": "010601521507",
+  "type": 3,
+  "uuid": "0123456789ABCDEF0123456789ABCDEF",
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 6`] = `
+Object {
+  "A_temp": 14.546875,
+  "adv_add": "AC233FA29054",
+  "bat": 3,
+  "imei": "012345678901234",
+  "sns3": 46.63671875,
+  "sns_valid_no": 5,
+  "timestamp": "010511161217",
+  "type": 4,
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 7`] = `
+Object {
+  "adv_add": "AC233FA28F5F",
+  "bat": 3,
+  "imei": "012345678901234",
+  "sns2": 12.66796875,
+  "sns4": 53.05859375,
+  "sns_valid_no": 10,
+  "timestamp": "010511161422",
+  "type": 4,
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 8`] = `
+Object {
+  "bat": -1,
+  "timestamp": "010601521507",
+  "type": 2,
+}
+`;

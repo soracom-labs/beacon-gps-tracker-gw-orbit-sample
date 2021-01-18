@@ -1,0 +1,92 @@
+{
+  "name": "orbit-development-environment-assemblyscript",
+  "version": "0.1.0",
+  "description": "AssemblyScript development environment for SORACOM Orbit",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "author": "0x6b",
+  "main": "build/soralet-optmized.wasm",
+  "engines": {
+    "node": ">12.16.3"
+  },
+  "scripts": {
+    "init": "npm ci",
+    "lint": "eslint 'assembly/**/*.ts'",
+    "build": "node --experimental-wasm-bigint node_modules/.bin/asc assembly/index.ts --binaryFile build/soralet-beacon-gps-tracker.wasm --textFile build/soralet-beacon-gps-tracker.wat --sourceMap --debug --runtime none --use abort=~lib/orbit-sdk-assemblyscript/index/abort --use Date=~lib/orbit-sdk-assemblyscript/index/Date --use Math=~lib/orbit-sdk-assemblyscript/index/Math",
+    "build:optimized": "node --experimental-wasm-bigint node_modules/.bin/asc assembly/index.ts --binaryFile build/soralet-optimized.wasm --textFile build/soralet-optimized.wat --sourceMap --optimize --runtime none --use abort=~lib/orbit-sdk-assemblyscript/index/abort --use Date=~lib/orbit-sdk-assemblyscript/index/Date",
+    "test": "node --experimental-wasm-bigint node_modules/.bin/jest",
+    "test:updateSnapshot": "node --experimental-wasm-bigint node_modules/.bin/jest --updateSnapshot",
+    "clean": "rimraf build/**/*"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {},
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    }
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "resolveJsonModule": true
+        }
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "@types/text-encoding": "0.0.35",
+    "assemblyscript-json": "^0.3.3",
+    "orbit-sdk-assemblyscript": "file:../orbit-sdk-assemblyscript"
+  },
+  "devDependencies": {
+    "@assemblyscript/loader": "^0.16.1",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.20",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
+    "assemblyscript": "^0.16.1",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "jest-util": "^26.6.2",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
+  }
+}
