@@ -30,7 +30,7 @@ export function uplink(): i32 {
     encoder.setString("imei", data.imei);
   }
 
-  // send different parameter by type
+  // Send different parameter by type
   if (data.type == 1) {
     setLocationInfo(data, encoder);
   } else if (data.type == 2) {
@@ -103,7 +103,7 @@ function setBleSensorInfo(data: Data, encoder: JSONEncoder): void {
 
   encoder.setInteger("sns_valid_no", data.sns_valid_no);
 
-  // choose which sensor data to send by sns_valid_no
+  // Choose which sensor data to send by sns_valid_no
   const sns_valid_no_bin = data.sns_valid_no.toString(2);
   const sns_valid_no_arr: number[] = sns_valid_no_bin
     .split("")
@@ -130,7 +130,7 @@ function setBleSensorInfo(data: Data, encoder: JSONEncoder): void {
     data.sns21, data.sns22, data.sns23, data.sns24
   ];
 
-  // modify Sensor data keys by User data
+  // Modify Sensor data keys by User data
   if (getUserdata() != "") {
     sns_key_arr = updateSnsKeyArr(sns_key_arr);
   } else {
@@ -172,7 +172,7 @@ function updateSnsKeyArr(arr: string[]): string[] {
 }
 
 class Data extends JSONHandler {
-  // name and type of keys which defined by Binary parsor format
+  // Name and type of keys which defined by Binary parsor format
   public type: i64;
   public bat: i64;
   public major_axis: i64;
@@ -442,7 +442,7 @@ class UserData extends JSONHandler {
   }
 }
 
-// get userdata as Uint8Array from environment
+// Get userdata as Uint8Array from environment
 function getUserdataAsBuffer(): Uint8Array {
   const arr = new Uint8Array(orbit_get_userdata_len());
   orbit_get_userdata(uint8ArrayToPointer(arr), arr.length);
