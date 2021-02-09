@@ -85,6 +85,9 @@ function setBeaconInfo(data: Data, encoder: JSONEncoder): void {
   const rssi_dec: i8 = parseInt(data.rssi_b, 16) as i8;
   encoder.setInteger("rssi", rssi_dec);
 
+  // As there might be multiple iBeacon devices, add major and minor to key name
+  const rssi_key_name: string = "rssi_" + major_dec.toString() + "_" + minor_dec.toString();
+  encoder.setInteger(rssi_key_name, rssi_dec);
 
   encoder.setInteger("attr", data.attr);
 }
