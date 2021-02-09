@@ -81,9 +81,10 @@ function setBeaconInfo(data: Data, encoder: JSONEncoder): void {
 
   encoder.setString("rssi_b", data.rssi_b);
 
-  // as rssi_b is ASCII of HEX, converted to decimal
-  const rssi_dec: f64 = parseInt(data.rssi_b, 16);
-  encoder.setFloat("rssi", rssi_dec);
+  // As rssi_b is ASCII of HEX, converted to 8bit signed integer
+  const rssi_dec: i8 = parseInt(data.rssi_b, 16) as i8;
+  encoder.setInteger("rssi", rssi_dec);
+
 
   encoder.setInteger("attr", data.attr);
 }
