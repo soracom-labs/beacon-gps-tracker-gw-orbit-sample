@@ -72,8 +72,12 @@ function setLocationInfo(data: Data, encoder: JSONEncoder): void {
 
 function setBeaconInfo(data: Data, encoder: JSONEncoder): void {
   encoder.setString("uuid", data.uuid);
-  encoder.setString("major", data.major);
-  encoder.setString("minor", data.minor);
+
+  // As major and minor are ASCII of HEX, converted to decimal
+  const major_dec: i64 = parseInt(data.major, 16) as i64;
+  encoder.setInteger("major", major_dec);
+  const minor_dec: i64 = parseInt(data.minor, 16) as i64;
+  encoder.setInteger("minor", minor_dec);
 
   encoder.setString("rssi_b", data.rssi_b);
 
