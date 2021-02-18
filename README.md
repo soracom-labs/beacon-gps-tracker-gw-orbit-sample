@@ -4,7 +4,7 @@
 
 ## 利用方法
 
-[最新リリース](https://github.com/soracom-labs/beacon-gps-tracker-gw-orbit-sample/releases) の WASM ファイル (soralet-beacon-gps-tracker.wasm) をダウンロードし、SORACOM ユーザコンソールへ設定することで利用できます。
+[最新リリース](https://github.com/soracom-labs/beacon-gps-tracker-gw-orbit-sample/releases) の WASM ファイル (soralet-beacon-gps-tracker-optimized.wasm) をダウンロードし、SORACOM ユーザコンソールへ設定することで利用できます。
 具体的な利用方法は [Getting Started for ビーコン対応 GPS トラッカー GW](https://dev.soracom.io/jp/beacon_gps_tracker/getting-started/) を参照してください。
 WASM モジュールによって変換されたデータのフォーマットは[ビーコン対応 GPS トラッカー GW ユーザーガイド](https://dev.soracom.io/jp/beacon_gps_tracker/format-with-orbit/)を参照してください。
 
