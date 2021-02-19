@@ -30,7 +30,7 @@ export function uplink(): i32 {
     encoder.setString("imei", data.imei);
   }
 
-  // send different parameter by type
+  // Send different parameter by type
   if (data.type == 1) {
     setLocationInfo(data, encoder);
   } else if (data.type == 2) {
@@ -72,14 +72,22 @@ function setLocationInfo(data: Data, encoder: JSONEncoder): void {
 
 function setBeaconInfo(data: Data, encoder: JSONEncoder): void {
   encoder.setString("uuid", data.uuid);
-  encoder.setString("major", data.major);
-  encoder.setString("minor", data.minor);
+
+  // As major and minor are ASCII of HEX, converted to decimal
+  const major_dec: i64 = parseInt(data.major, 16) as i64;
+  encoder.setInteger("major", major_dec);
+  const minor_dec: i64 = parseInt(data.minor, 16) as i64;
+  encoder.setInteger("minor", minor_dec);
 
   encoder.setString("rssi_b", data.rssi_b);
 
-  // as rssi_b is ASCII of HEX, converted to decimal
-  const rssi_dec: f64 = parseInt(data.rssi_b, 16);
-  encoder.setFloat("rssi", rssi_dec);
+  // As rssi_b is ASCII of HEX, converted to 8bit signed integer
+  const rssi_dec: i8 = parseInt(data.rssi_b, 16) as i8;
+  encoder.setInteger("rssi", rssi_dec);
+
+  // As there might be multiple iBeacon devices, add major and minor to key name
+  const rssi_key_name: string = "rssi_" + major_dec.toString() + "_" + minor_dec.toString();
+  encoder.setInteger(rssi_key_name, rssi_dec);
 
   encoder.setInteger("attr", data.attr);
 }
@@ -95,7 +103,7 @@ function setBleSensorInfo(data: Data, encoder: JSONEncoder): void {
 
   encoder.setInteger("sns_valid_no", data.sns_valid_no);
 
-  // choose which sensor data to send by sns_valid_no
+  // Choose which sensor data to send by sns_valid_no
   const sns_valid_no_bin = data.sns_valid_no.toString(2);
   const sns_valid_no_arr: number[] = sns_valid_no_bin
     .split("")
@@ -122,7 +130,7 @@ function setBleSensorInfo(data: Data, encoder: JSONEncoder): void {
     data.sns21, data.sns22, data.sns23, data.sns24
   ];
 
-  // modify Sensor data keys by User data
+  // Modify Sensor data keys by User data
   if (getUserdata() != "") {
     sns_key_arr = updateSnsKeyArr(sns_key_arr);
   } else {
@@ -164,7 +172,7 @@ function updateSnsKeyArr(arr: string[]): string[] {
 }
 
 class Data extends JSONHandler {
-  // name and type of keys which defined by Binary parsor format
+  // Name and type of keys which defined by Binary parsor format
   public type: i64;
   public bat: i64;
   public major_axis: i64;
@@ -434,7 +442,7 @@ class UserData extends JSONHandler {
   }
 }
 
-// get userdata as Uint8Array from environment
+// Get userdata as Uint8Array from environment
 function getUserdataAsBuffer(): Uint8Array {
   const arr = new Uint8Array(orbit_get_userdata_len());
   orbit_get_userdata(uint8ArrayToPointer(arr), arr.length);

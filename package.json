@@ -1,10 +1,10 @@
 {
   "name": "orbit-development-environment-assemblyscript",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "AssemblyScript development environment for SORACOM Orbit",
   "license": "SEE LICENSE IN LICENSE.txt",
-  "author": "0x6b",
-  "main": "build/soralet-optmized.wasm",
+  "author": "nmikuni",
+  "main": "build/soralet-beacon-gps-tracker-optimized.wasm",
   "engines": {
     "node": ">12.16.3"
   },
@@ -12,7 +12,7 @@
     "init": "npm ci",
     "lint": "eslint 'assembly/**/*.ts'",
     "build": "node --experimental-wasm-bigint node_modules/.bin/asc assembly/index.ts --binaryFile build/soralet-beacon-gps-tracker.wasm --textFile build/soralet-beacon-gps-tracker.wat --sourceMap --debug --runtime none --use abort=~lib/orbit-sdk-assemblyscript/index/abort --use Date=~lib/orbit-sdk-assemblyscript/index/Date --use Math=~lib/orbit-sdk-assemblyscript/index/Math",
-    "build:optimized": "node --experimental-wasm-bigint node_modules/.bin/asc assembly/index.ts --binaryFile build/soralet-optimized.wasm --textFile build/soralet-optimized.wat --sourceMap --optimize --runtime none --use abort=~lib/orbit-sdk-assemblyscript/index/abort --use Date=~lib/orbit-sdk-assemblyscript/index/Date",
+    "build:optimized": "node --experimental-wasm-bigint node_modules/.bin/asc assembly/index.ts --binaryFile build/soralet-beacon-gps-tracker-optimized.wasm --textFile build/soralet-beacon-gps-tracker-optimized.wat --sourceMap --optimize --runtime none --use abort=~lib/orbit-sdk-assemblyscript/index/abort --use Date=~lib/orbit-sdk-assemblyscript/index/Date",
     "test": "node --experimental-wasm-bigint node_modules/.bin/jest",
     "test:updateSnapshot": "node --experimental-wasm-bigint node_modules/.bin/jest --updateSnapshot",
     "clean": "rimraf build/**/*"
